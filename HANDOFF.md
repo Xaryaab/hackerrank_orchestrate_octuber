@@ -47,7 +47,7 @@ share/exhaust fast; gemini-3.8-flash queues ~2 min/call). Current: VISION_MODEL=
 - [x] usage_report priced (gemini-3.5-flash-lite 0.30/2.50 per 1M, user-supplied)
 - [x] evaluation_report.md (17 custom checks in code/evaluation/custom_cases.py), README, code/requirements.txt
 - [x] ultrareview: 10 findings fixed (see evaluation_report.md); outputs unchanged; no-key run reproduces output.csv
-- [ ] code.zip
+- [x] code.zip built (51 files, 68 KB); verified: clean unzip + dataset, no key -> identical output.csv
 
 ## Known unrecoverable / open sample misses
 - case_04 account_004: no activity or evidence mentions it (naming convention only) -> skipped on purpose.
