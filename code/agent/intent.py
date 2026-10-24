@@ -26,7 +26,10 @@ NON_DELETION_MARKERS = [
     r"\bstop the promotional", r"\bunsubscribe\b", r"\bsend me a copy\b", r"\bcopy of (last|my|the) (year|invoice)",
     r"\bdownload my account information\b", r"\bportable format\b", r"\bcorrect it without\b",
     r"\bchange the email address\b", r"\breset(ting)? the login\b", r"what personal information you hold",
-    r"\bout of date\b[^.]*\breplace\b",
+    r"\bout of date\b[^.]*\breplace\b", r"\bnot asking (you )?to (remove|delete|close)",
+    # negations in other languages: es "no borren", pt "não excluam", fr "ne supprimez pas", de "nicht löschen"
+    r"\bno (borr|elimin|cierr)", r"\bn[ãa]o (exclu|apag|encerr)", r"\bne (supprimez|fermez) pas",
+    r"\bnicht (löschen|schließen)", r"\bkeine löschung",
 ]
 
 SYSTEM_PROMPT = """You are a privacy-operations triage assistant for an e-commerce company.
@@ -82,10 +85,13 @@ class IntentClassifier:
                                      "Classify these customer messages:\n" + payload)
             if not res:
                 continue
-            for item in res.get("results", []):
+            items = res.get("results")
+            for item in items if isinstance(items, list) else []:
+                if not isinstance(item, dict):
+                    continue
                 try:
                     self.llm_labels[chunk[int(item["id"])]] = item
-                except (KeyError, ValueError, IndexError):
+                except (KeyError, ValueError, IndexError, TypeError):
                     continue
 
     def classify(self, req: Request) -> IntentDecision:
@@ -96,7 +102,12 @@ class IntentClassifier:
         llm_says = bool(label.get("is_deletion"))
         if llm_says == rule.is_deletion:
             return IntentDecision(llm_says, f"llm+rules agree ({label.get('request_type')})")
-        # disagreement: trust explicit negation markers, otherwise trust the model
-        if rule.reason.startswith("rules: non-deletion marker"):
+        # disagreement: an explicit negation wins only if the text has no explicit deletion wording;
+        # "erase my account, but don't delete the invoices" is a deletion with a carve-out
+        unnegated = req.request_text.lower()
+        for p in NON_DELETION_MARKERS:          # drop "do not delete ..." so it does not count as asking
+            unnegated = re.sub(p, " ", unnegated)
+        explicit_delete = any(re.search(p, unnegated) for p in DELETE_PATTERNS)
+        if rule.reason.startswith("rules: non-deletion marker") and not explicit_delete:
             return IntentDecision(False, f"conflict, negation marker wins: {rule.reason}")
         return IntentDecision(llm_says, f"conflict, llm wins ({label.get('request_type')}); {rule.reason}")

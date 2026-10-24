@@ -18,8 +18,8 @@ Must also ship `code/evaluation/evaluation_report.md` + `code/evaluation/usage_r
 venv at repo root `.venv` (pypdf, openai, python-dotenv). Python 3.14.
 LLM: `.env` GEMINI_API_KEY (Google AI Studio FREE tier: 20 requests/day PER MODEL, some 3.x models
 share/exhaust fast; gemini-3.8-flash queues ~2 min/call). Current: VISION_MODEL=gemini-2.5-flash
-(images), TEXT_MODEL=gemini-3.5-flash-lite (intent + PDF text). All needed calls are cached in
-`code/cache/llm/` -> reruns cost 0 calls. Changing a prompt or model invalidates its cache entries.
+(images), TEXT_MODEL=gemini-3.5-flash-lite (intent + PDF text) = code defaults. All needed calls are cached in
+`code/cache/llm/` (keyed on bare model ids, provider-independent) -> reruns need no key. Changing a prompt or model invalidates its cache entries.
 
 ## Architecture (code/agent/)
 - `evidence.py`  parse every evidence file -> `Observation(file_id, captured_at, ts, resource_id, system, attrs)`;
@@ -44,8 +44,10 @@ share/exhaust fast; gemini-3.8-flash queues ~2 min/call). Current: VISION_MODEL=
 - [x] Local grader; samples (no LLM): status 0.969, step F1 0.974, exact sequence 0.844
 - [x] LLM media extraction + LLM intent (Gemini); samples: status 1.000, step F1 0.987, seq 0.875
 - [x] Full test run -> output.csv (355 INCOMPLETE / 153 COMPLETE / 10 N/A), usage_report.md, validator clean
-- [ ] usage_report: gemini-3.5-flash-lite price unknown -> set LLM_PRICE_IN/OUT or add to PRICES
-- [ ] evaluation_report.md (metrics, >=3 custom eval cases, failures & improvements), README, code.zip
+- [x] usage_report priced (gemini-3.5-flash-lite 0.30/2.50 per 1M, user-supplied)
+- [x] evaluation_report.md (17 custom checks in code/evaluation/custom_cases.py), README, code/requirements.txt
+- [x] ultrareview: 10 findings fixed (see evaluation_report.md); outputs unchanged; no-key run reproduces output.csv
+- [ ] code.zip
 
 ## Known unrecoverable / open sample misses
 - case_04 account_004: no activity or evidence mentions it (naming convention only) -> skipped on purpose.

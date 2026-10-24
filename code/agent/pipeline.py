@@ -70,7 +70,7 @@ class Auditor:
                 continue
             if incomplete:
                 s["evidence_id"] = ""
-            elif not s["evidence_id"]:
+            elif not s["evidence_id"] and s["operation"] == "VERIFY_RECORD_ABSENT":
                 s["evidence_id"] = self.fallback_evidence(s["system_id"], req.audit_at)
         steps = order_and_number(raw)
         status = "INCOMPLETE" if incomplete else "COMPLETE"

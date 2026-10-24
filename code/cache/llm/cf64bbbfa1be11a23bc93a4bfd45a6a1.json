@@ -1,0 +1,18 @@
+{
+ "model": "gemini-3.5-flash-lite",
+ "purpose": "intent_classification",
+ "result": {
+  "results": [
+   {
+    "id": 0,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   }
+  ]
+ },
+ "usage": {
+  "in": 336,
+  "out": 31
+ }
+}

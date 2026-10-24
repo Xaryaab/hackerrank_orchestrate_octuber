@@ -45,9 +45,11 @@ class Identity:
 class IdentityIndex:
     def __init__(self, dataset: Path):
         self.users: dict[str, Identity] = {}
+        self.current_owner: dict[str, str] = {}     # current e-mail -> user id
         with open(dataset / "user_identities.csv", encoding="utf-8") as f:
             for r in csv.DictReader(f):
                 ident = Identity(r["user_id"], r["name"])
+                self.current_owner[norm_email(r["email"])] = r["user_id"]
                 ident.emails.add(norm_email(r["email"]))
                 ident.phones.add(norm_phone(r["phone"]))
                 ident.hashes.add(r["email_hash"].lower())
@@ -80,8 +82,14 @@ class IdentityIndex:
                 self.by_key.setdefault(k, set()).add(ident.user_id)
 
     def resolve_email(self, email: str) -> str | None:
-        hits = self.by_key.get(("email", norm_email(email)), set())
-        return sorted(hits)[0] if len(hits) == 1 else (sorted(hits)[0] if hits else None)
+        key = norm_email(email)
+        hits = self.by_key.get(("email", key), set())
+        if len(hits) == 1:
+            return next(iter(hits))
+        # an address held by several users over time: its current holder owns it; otherwise the
+        # request cannot be attributed safely (never audit another customer's records)
+        owner = self.current_owner.get(key)
+        return owner if owner in hits else None
 
 
 def value_keys(value) -> set:

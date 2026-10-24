@@ -370,6 +370,20 @@ def _pdf_text(path: Path) -> str:
     return "\n".join(p.extract_text() or "" for p in PdfReader(str(path)).pages)
 
 
+def _iso_utc(value) -> str | None:
+    """Model-supplied timestamp -> canonical YYYY-MM-DDTHH:MM:SSZ (string-comparable), else None."""
+    from datetime import datetime, timezone
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        d = datetime.fromisoformat(value.strip().replace("Z", "+00:00").replace(" UTC", "+00:00"))
+    except ValueError:
+        return None
+    if d.tzinfo is None:
+        d = d.replace(tzinfo=timezone.utc)
+    return d.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
 def media_observations(path: Path, fid: str, cap: str, facts: list[dict],
                        aliases: dict[str, str]) -> list[Observation]:
     """Observations from model-extracted media facts, grounded and alias-resolved."""
@@ -382,7 +396,7 @@ def media_observations(path: Path, fid: str, cap: str, facts: list[dict],
         target = aliases.get(rid) or aliases.get(fact.get("file_name") or "")
         if target and (fact.get("system") or system_for(rid)) == system_for(target):
             rid = target
-        out.append(Observation(fid, cap, fact.get("observed_at") or cap, rid,
+        out.append(Observation(fid, cap, _iso_utc(fact.get("observed_at")) or cap, rid,
                                fact.get("system") or system_for(rid), "media", fact))
     if text is not None:
         # document references (statement numbers, file names) the extractor does not list as records;

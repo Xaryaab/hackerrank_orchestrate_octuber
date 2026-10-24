@@ -173,3 +173,65 @@ branch=main
 repo_root=C:\Users\HP\Desktop\HackerRank Orchestrate\repo
 worktree=main
 parent_agent=none
+
+## [2026-10-24T05:07:31Z] Commit agent v1 to branch agent-v1 for ultra review
+
+User Prompt (verbatim, secrets redacted):
+commit to agent-v1 first
+
+Agent Response Summary:
+Created branch agent-v1 from main and committed all work (agent code, grader, tools, HANDOFF.md, cached LLM responses, output.csv, usage report, log) as 9de9a0b after scanning staged files for API keys (none found; .env is gitignored). The working tree is clean, so /code-review ultra can review the full agent from this branch.
+
+Actions:
+* git checkout -b agent-v1; git add -A; secret scan; git commit (9de9a0b)
+
+Context:
+tool=Claude Code
+model=claude-opus-5-5
+branch=agent-v1
+repo_root=C:\Users\HP\Desktop\HackerRank Orchestrate\repo
+worktree=main
+parent_agent=none
+
+## [2026-10-24T05:16:14Z] Write evaluation report, custom eval cases, README
+
+User Prompt (verbatim, secrets redacted):
+go ahead with the evaluation report and README
+
+Agent Response Summary:
+Added code/evaluation/custom_cases.py: 17 checks run through the real pipeline (historical-email variants of samples that must match gold, intent adversarial texts in 5 languages, audit_at cut-off, hand-labelled media test cases 33/46/61, contract/temporal invariants over all 518 rows); all pass. The custom cases exposed a rules-fallback gap (non-English negations), fixed in intent.py with no change to output.csv. Wrote code/evaluation/evaluation_report.md (sample metrics rules-only vs final, remaining misses, custom cases, test stats verified from traces, failures and improvements, limitations) and replaced the starter README with setup/run/architecture docs; added code/requirements.txt. Ultra review still running.
+
+Actions:
+* Created code/evaluation/custom_cases.py, code/evaluation/evaluation_report.md, code/requirements.txt
+* Rewrote README.md; edited code/agent/intent.py (multilingual negation markers); updated HANDOFF.md
+* Ran sample/test pipelines (LLM and --no-llm), grader, custom cases; output.csv unchanged
+
+Context:
+tool=Claude Code
+model=claude-opus-5-5
+branch=agent-v1
+repo_root=C:\Users\HP\Desktop\HackerRank Orchestrate\repo
+worktree=main
+parent_agent=none
+
+## [2026-10-24T05:26:56Z] Fix all 10 ultra review findings; verify outputs; commit
+
+User Prompt (verbatim, secrets redacted):
+[Automated notification: /code-review ultra cloud review completed with 10 findings]
+
+Agent Response Summary:
+Verified and fixed all 10 findings: llm.py (reject non-dict JSON, provider-independent cache key with defaults matching the cached models, atomic best-effort cache writes outside the retry loop, corrupt cache = miss, case-insensitive daily-quota detection plus 3-failure circuit breaker), evidence.py (normalize model observed_at to canonical UTC), linker.py (skip branch in exact solver), intent.py (negation marker overrides LLM only without unnegated deletion wording), pipeline.py (absence-by-omission fallback only for VERIFY_RECORD_ABSENT), identity.py (ambiguous emails -> current holder or unattributed), state.py (explicit flags beat result label). Samples unchanged (status 1.000, F1 0.987), output.csv byte-identical, 17/17 custom checks pass, and runs with no key / OpenRouter-only key reproduce output.csv from the committed cache. Pruned 23 stale cache entries from abandoned models, updated .env.example, evaluation_report.md and HANDOFF.md.
+
+Actions:
+* Edited code/agent/{llm,evidence,linker,intent,pipeline,identity,state}.py, .env.example, code/evaluation/evaluation_report.md, HANDOFF.md
+* Removed stale code/cache/llm entries (gemma, gemini-3.5/3.7/3.8-flash)
+* Ran sample grader, test split, custom cases, no-key reproducibility runs; regenerated usage_report.md
+* git commit on agent-v1
+
+Context:
+tool=Claude Code
+model=claude-opus-5-5
+branch=agent-v1
+repo_root=C:\Users\HP\Desktop\HackerRank Orchestrate\repo
+worktree=main
+parent_agent=none

@@ -308,6 +308,9 @@ class Linker:
                     assign[rid] = (cid, a)
                     rec(i + 1, used | {(cid, pre)}, score + w, assign)
                     del assign[rid]
+                # leave it unassigned (scored like an implausible owner) so that components with
+                # more same-prefix records than claimants still get a partial assignment
+                rec(i + 1, used, score - 1.0, assign)
             rec(0, frozenset(), 0.0, {})
             chosen = best["assign"]
         else:   # greedy fallback for large components

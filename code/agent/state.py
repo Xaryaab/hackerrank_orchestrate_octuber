@@ -114,10 +114,8 @@ def interpret(o: Observation) -> Signals:
             if _b(a.get(k)) is not None:
                 s.enabled = _b(a.get(k))
                 break
-        if result == "ACTIVE":
-            s.enabled = True
-        elif result == "DISABLED":
-            s.enabled = False
+        if s.enabled is None and result in ("ACTIVE", "DISABLED"):   # explicit flags win over the label
+            s.enabled = result == "ACTIVE"
         lds = str(a.get("last_delivery_status") or "").lower()
         if s.enabled is None and lds:
             s.enabled = lds != "stopped"
@@ -130,8 +128,6 @@ def interpret(o: Observation) -> Signals:
             s.restorable = str(a["decision"]).lower() in ("allow", "allowed", "permit")
         if _b(a.get("eligible")) is not None:
             s.restorable = bool(_b(a.get("eligible"))) and not bool(_b(a.get("deletion_block")))
-        if result == "ACTIVE":
-            s.restorable = True
-        elif result == "BLOCKED":
-            s.restorable = False
+        if s.restorable is None and result in ("ACTIVE", "BLOCKED"):  # explicit flags win over the label
+            s.restorable = result == "ACTIVE"
     return s

@@ -13,6 +13,7 @@ import base64
 import hashlib
 import json
 import os
+import re
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -24,6 +25,9 @@ except Exception:  # pragma: no cover
     pass
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1"
+# daily-cap 429s: Gemini "...PerDay..." / OpenRouter "free-models-per-day"
+DAILY_QUOTA_RE = re.compile(r"per.?day", re.IGNORECASE)
+MAX_CONSECUTIVE_FAILURES = 3
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 # USD per 1M tokens (input, output) for cost estimates in usage_report.md.
@@ -52,8 +56,9 @@ class CallRecord:
 @dataclass
 class LLMClient:
     cache_dir: Path
-    text_model: str = field(default_factory=lambda: os.getenv("TEXT_MODEL", "google/gemini-2.5-flash"))
-    vision_model: str = field(default_factory=lambda: os.getenv("VISION_MODEL", "google/gemini-2.5-flash"))
+    # defaults = the models the committed cache (and output.csv) were produced with
+    text_model: str = field(default_factory=lambda: os.getenv("TEXT_MODEL", "gemini-3.5-flash-lite"))
+    vision_model: str = field(default_factory=lambda: os.getenv("VISION_MODEL", "gemini-2.5-flash"))
     max_tokens: int = field(default_factory=lambda: int(os.getenv("LLM_MAX_TOKENS", "8192")))
     attempts: int = field(default_factory=lambda: int(os.getenv("LLM_ATTEMPTS", "5")))
     ledger: list = field(default_factory=list)
@@ -65,11 +70,13 @@ class LLMClient:
         self.provider, self.api_key, base_url = (
             ("Google Gemini API", gemini_key, GEMINI_URL) if gemini_key
             else ("OpenRouter", os.getenv("OPENROUTER_API_KEY", "").strip(), OPENROUTER_URL))
-        if self.provider == "Google Gemini API":  # the direct API uses bare ids: gemini-2.5-flash
-            self.text_model = self.text_model.removeprefix("google/")
-            self.vision_model = self.vision_model.removeprefix("google/")
+        # canonical (provider-independent) ids: the cache is keyed on these, so it is shared
+        # between providers and hit even without any API key
+        self.text_model = self.text_model.removeprefix("google/")
+        self.vision_model = self.vision_model.removeprefix("google/")
         self._client = None
         self._exhausted: set[str] = set()
+        self._consecutive_failures = 0
         if self.api_key:
             from openai import OpenAI
             self._client = OpenAI(base_url=base_url, api_key=self.api_key, timeout=180, max_retries=1)
@@ -78,6 +85,12 @@ class LLMClient:
     def available(self) -> bool:
         return self._client is not None
 
+    def _api_model(self, model: str) -> str:
+        """Provider-specific id: OpenRouter namespaces Gemini models as google/<id>."""
+        if self.provider == "OpenRouter" and "/" not in model and model.startswith("gemini"):
+            return "google/" + model
+        return model
+
     def _cache_path(self, model: str, payload: str) -> Path:
         h = hashlib.sha256((model + "\n" + payload).encode()).hexdigest()[:32]
         return self.cache_dir / f"{h}.json"
@@ -85,7 +98,7 @@ class LLMClient:
     def chat_json(self, purpose: str, system: str, user: str, model: str | None = None,
                   image_paths: list[Path] | None = None) -> dict | None:
         """Single JSON-mode completion.  Returns parsed JSON or None on failure."""
-        model = model or (self.vision_model if image_paths else self.text_model)
+        model = (model or (self.vision_model if image_paths else self.text_model)).removeprefix("google/")
         content: list | str = user
         img_digest = ""
         if image_paths:
@@ -97,30 +110,32 @@ class LLMClient:
                                 "image_url": {"url": "data:image/png;base64," + base64.b64encode(data).decode()}})
         cpath = self._cache_path(model, system + "\n" + user + img_digest)
         if cpath.exists():
-            cached = json.loads(cpath.read_text(encoding="utf-8"))
-            self.ledger.append(CallRecord(purpose, model, cached["usage"]["in"], cached["usage"]["out"], True, 0.0))
-            return cached["result"]
+            try:
+                cached = json.loads(cpath.read_text(encoding="utf-8"))
+                if isinstance(cached.get("result"), dict):
+                    self.ledger.append(CallRecord(purpose, model, cached["usage"]["in"], cached["usage"]["out"],
+                                                  True, 0.0))
+                    return cached["result"]
+            except (OSError, ValueError, KeyError, TypeError, AttributeError):
+                pass  # unreadable / truncated cache entry: treat as a miss
         if not self.available or model in self._exhausted:
             return None
         for attempt in range(self.attempts):
             t0 = time.time()
             try:
                 resp = self._client.chat.completions.create(
-                    model=model, temperature=0, max_tokens=self.max_tokens,
+                    model=self._api_model(model), temperature=0, max_tokens=self.max_tokens,
                     response_format={"type": "json_object"},
                     messages=[{"role": "system", "content": system}, {"role": "user", "content": content}],
                 )
                 text = resp.choices[0].message.content or ""
                 text = text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
                 result = json.loads(text)
+                if not isinstance(result, dict):   # JSON mode may still return a bare array / scalar
+                    raise ValueError(f"expected a JSON object, got {type(result).__name__}")
                 u = resp.usage
                 rec = CallRecord(purpose, model, u.prompt_tokens if u else 0, u.completion_tokens if u else 0,
                                  False, time.time() - t0)
-                self.ledger.append(rec)
-                cpath.write_text(json.dumps({"model": model, "purpose": purpose, "result": result,
-                                             "usage": {"in": rec.input_tokens, "out": rec.output_tokens}},
-                                            ensure_ascii=False, indent=1), encoding="utf-8")
-                return result
             except Exception as e:  # network / JSON errors -> retry, then give up (caller falls back)
                 last = e
                 status = getattr(e, "status_code", None)
@@ -128,7 +143,7 @@ class LLMClient:
                     print(f"[llm] {purpose}: HTTP {status}, disabling model calls for this run")
                     self._client = None
                     return None
-                if status == 429 and "PerDay" in str(e):  # daily quota is per model: skip only this one
+                if status == 429 and DAILY_QUOTA_RE.search(str(e)):  # daily quota is per model: skip this one
                     print(f"[llm] {purpose}: daily quota exhausted for {model}, skipping it for this run")
                     self._exhausted.add(model)
                     return None
@@ -136,5 +151,26 @@ class LLMClient:
                       f"{status or type(e).__name__}")
                 # shared free-tier pools rate-limit (429): back off much longer than for transient errors
                 time.sleep((20 if status == 429 else 2) * (attempt + 1))
+                continue
+            self.ledger.append(rec)
+            self._consecutive_failures = 0
+            self._write_cache(cpath, {"model": model, "purpose": purpose, "result": result,
+                                      "usage": {"in": rec.input_tokens, "out": rec.output_tokens}})
+            return result
         print(f"[llm] {purpose}: giving up after retries: {last}")
+        self._consecutive_failures += 1
+        if self._consecutive_failures >= MAX_CONSECUTIVE_FAILURES:   # provider is down: stop paying waits
+            print(f"[llm] {self._consecutive_failures} calls failed in a row, disabling model calls for this run")
+            self._client = None
         return None
+
+    @staticmethod
+    def _write_cache(cpath: Path, entry: dict) -> None:
+        """Atomic, best-effort: a failed write never discards a paid result or leaves a partial file."""
+        tmp = cpath.with_suffix(".tmp")
+        try:
+            tmp.write_text(json.dumps(entry, ensure_ascii=False, indent=1), encoding="utf-8")
+            os.replace(tmp, cpath)
+        except (OSError, ValueError) as e:
+            print(f"[llm] could not write cache entry {cpath.name}: {e}")
+            tmp.unlink(missing_ok=True)
