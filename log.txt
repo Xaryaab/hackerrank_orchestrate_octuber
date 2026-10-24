@@ -277,3 +277,25 @@ branch=agent-v1
 repo_root=C:\Users\HP\Desktop\HackerRank Orchestrate\repo
 worktree=main
 parent_agent=none
+
+## [2026-10-24T06:18:06Z] Pre-submission check against official scoring; injection fail-safe
+
+User Prompt (verbatim, secrets redacted):
+Before you give me the final three files for submission verify that we will score the max marks. https://help.hackerrank.com/articles/3728112689-HackerRank-Orchestrate#how-scoring-works-in-orchestrate
+
+Agent Response Summary:
+Read the official scoring page (code ZIP 30%, output 30%, AI interview 30%, chat transcript 10%) and checked each signal; max marks cannot be guaranteed because output is graded against hidden answers and the interview is live. Scanned request texts, logs and PDFs for prompt injection (none in the dataset) but found an injection path in our intent conflict logic, and added a deterministic fail-safe so the LLM cannot veto explicit un-negated deletion wording; added custom checks B-intent-9 and B-injection-failsafe (20/20 pass). Added a Safety and failure handling section (incl. proposed production monitoring) to README and updated the evaluation report. Verified output.csv contract (518 rows, ids, order, 0 errors), log.txt (14 entries, all with tool/model, no secrets), rebuilt code.zip (52 files, 70 KB, no secrets) and confirmed a clean unzip with no API key reproduces output.csv and passes all custom checks.
+
+Actions:
+* WebFetch of the HackerRank Orchestrate scoring help page
+* Edited code/agent/intent.py (injection fail-safe), code/evaluation/custom_cases.py, evaluation_report.md, README.md
+* Ran grader, test split (unchanged), custom cases, contract and log validation; rebuilt and verified code.zip
+* git commit on agent-v1
+
+Context:
+tool=Claude Code
+model=claude-opus-5-5
+branch=agent-v1
+repo_root=C:\Users\HP\Desktop\HackerRank Orchestrate\repo
+worktree=main
+parent_agent=none

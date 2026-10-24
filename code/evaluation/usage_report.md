@@ -1,6 +1,6 @@
 # Token Usage and Cost Report
 
-Generated automatically by `code/main.py` at the end of the final full-dataset run (2026-10-24 06:03 UTC) that produced `output.csv`.
+Generated automatically by `code/main.py` at the end of the final full-dataset run (2026-10-24 06:16 UTC) that produced `output.csv`.
 
 * Requests audited: **518**
 * Provider: **Google Gemini API** (OpenAI-compatible API)

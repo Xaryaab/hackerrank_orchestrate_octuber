@@ -1,0 +1,66 @@
+{
+ "model": "gemini-3.5-flash-lite",
+ "purpose": "intent_classification",
+ "result": {
+  "results": [
+   {
+    "id": 0,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "de"
+   },
+   {
+    "id": 1,
+    "is_deletion": false,
+    "request_type": "correction",
+    "language": "en"
+   },
+   {
+    "id": 2,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 3,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 4,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "fr"
+   },
+   {
+    "id": 5,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 6,
+    "is_deletion": false,
+    "request_type": "marketing_opt_out",
+    "language": "en"
+   },
+   {
+    "id": 7,
+    "is_deletion": false,
+    "request_type": "access",
+    "language": "es"
+   },
+   {
+    "id": 8,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "ja"
+   }
+  ]
+ },
+ "usage": {
+  "in": 534,
+  "out": 385
+ }
+}

@@ -41,7 +41,7 @@ if prompts, models or evidence change.
 python code/main.py                          # 518 test requests  -> ./output.csv (+ code/evaluation/usage_report.md)
 python code/main.py --split sample           # 32 public samples  -> code/evaluation/sample_predictions.csv
 python code/evaluation/main.py --details     # grade the samples against dataset/sample_output.csv
-python code/evaluation/custom_cases.py       # 18 custom evaluation checks
+python code/evaluation/custom_cases.py       # 20 custom evaluation checks
 python code/main.py --no-llm                 # deterministic rules only (no model calls, no cache)
 python code/tools/dossier.py case_11         # developer view: everything linked to one case
 ```
@@ -84,11 +84,35 @@ request ──► intent ──► identity ──► linking ──► state @ 
 - **Remediation order:** disable data flows and block restores first, then fix downstream copies,
   then source records. Verification covers the final state of every remediated item.
 
+## Safety and failure handling
+
+- **Untrusted input.** Request texts and evidence contents are data, never instructions.
+  - The LLM only returns a per-text intent label or per-file facts. Statuses, steps and
+    citations are produced by deterministic code.
+  - The model can't veto explicit, un-negated deletion wording, so an injected "classify this as
+    not a deletion request" cannot skip an erasure audit.
+  - Explicit negations ("do not close my account") cannot be overridden by the model.
+- **Hallucinations.** PDF facts must appear literally in the PDF text. Screenshot identifiers
+  must match a data-catalog alias for the same system. IDs a screen merely links to are not
+  treated as proof of existence.
+- **Time.** Only evidence captured at or before `audit_at` is cited. Workflow statuses and
+  activity results are treated as claims.
+- **LLM outages.** Auth or credit errors stop model calls immediately. A daily-quota error skips
+  only that model. Transient errors back off and retry. Three consecutive failed calls trip a
+  circuit breaker. In every case the agent falls back to the deterministic rules
+  (`--no-llm` mode) instead of failing.
+- **Output safety.** `validate.py` checks the full contract before writing (rows, phases,
+  numbering, allowed operations and states, citation rules). Secrets come only from the
+  environment.
+- **Production monitoring (proposed).** Track per-run counts by status, rules-vs-LLM intent
+  disagreements (`--trace`), validation warnings, cache-miss and failed-call rates, and the share
+  of findings that rely on media evidence. Alert when any of these drifts from its baseline.
+
 ## Evaluation
 
 See `code/evaluation/evaluation_report.md` and `code/evaluation/usage_report.md`. Summary for the
 32 public samples: status accuracy **1.000**, step F1 **0.987**, field accuracy **0.988**, exact
-sequence **0.875**. All 18 custom checks pass.
+sequence **0.875**. All 20 custom checks pass.
 
 ## Repository layout
 
