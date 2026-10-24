@@ -1,0 +1,28 @@
+{
+ "model": "gemini-3.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "analytics_7438",
+    "system": "analytics_platform",
+    "record_type": "ANALYTICS_PROFILE",
+    "result": "FOUND",
+    "customer_reference": "user_20",
+    "full_name": "Omar Darwish",
+    "email": "darwish.omar@icloud.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-07-13T10:00:00Z",
+    "note": "Pulse Analytics profile showing 12 sessions, 2 completed orders, and USD 167.42 total revenue."
+   }
+  ]
+ },
+ "usage": {
+  "in": 1603,
+  "out": 167
+ }
+}

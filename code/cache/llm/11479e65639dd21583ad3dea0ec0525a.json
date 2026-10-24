@@ -1,0 +1,92 @@
+{
+ "model": "gemini-2.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "user_17",
+    "system": "identity_service",
+    "record_type": "USER_PROFILE",
+    "result": "ACTIVE",
+    "customer_reference": "user_17",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-03-10T06:00:00Z",
+    "note": "Retained reference. Created 11 Jan 2024 08:42 UTC, Most recent update 10 Mar 2026 07:18 UTC. Owner team: Account Platform."
+   },
+   {
+    "resource_id": "ORD-20263245",
+    "system": "account_service",
+    "record_type": "ORDER",
+    "result": "ACTIVE",
+    "customer_reference": "user_17",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-03-10T06:00:00Z",
+    "note": "Linked to customer. Created 11 Jan 2024 08:45 UTC."
+   },
+   {
+    "resource_id": "CS-3245",
+    "system": "support_platform",
+    "record_type": "SUPPORT_TICKET",
+    "result": "ACTIVE",
+    "customer_reference": "user_17",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-03-10T06:00:00Z",
+    "note": "Linked to customer. Created 14 Feb 2024 12:16 UTC."
+   },
+   {
+    "resource_id": "CS-3378",
+    "system": "support_platform",
+    "record_type": "SUPPORT_TICKET",
+    "result": "ACTIVE",
+    "customer_reference": "user_17",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-03-10T06:00:00Z",
+    "note": "Linked to customer. Created 03 Jun 2024 09:27 UTC."
+   },
+   {
+    "resource_id": "FIN-7742",
+    "system": "account_service",
+    "record_type": "FINANCIAL_RECORD",
+    "result": "ACTIVE",
+    "customer_reference": "user_17",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-03-10T06:00:00Z",
+    "note": "Linked to customer. Created 22 Aug 2024 15:03 UTC."
+   }
+  ]
+ },
+ "usage": {
+  "in": 795,
+  "out": 931
+ }
+}

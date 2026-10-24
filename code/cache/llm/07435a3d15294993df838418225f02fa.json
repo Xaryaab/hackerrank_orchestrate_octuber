@@ -1,0 +1,28 @@
+{
+ "model": "gemini-3.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "support_1034",
+    "system": "support_platform",
+    "record_type": "SUPPORT_TICKET",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": "Kofi Agyeman",
+    "email": "kagyeman8947@fastmail.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-05-24T07:00:00Z",
+    "note": "Helpline console ticket CS-5034 associated with order ORD-20265034."
+   }
+  ]
+ },
+ "usage": {
+  "in": 1617,
+  "out": 206
+ }
+}

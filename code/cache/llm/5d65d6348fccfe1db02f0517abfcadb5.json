@@ -1,0 +1,28 @@
+{
+ "model": "gemini-2.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "marketing_001",
+    "system": "marketing_platform",
+    "record_type": "MARKETING_PROFILE",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": "Soo-jin Park",
+    "email": "sj.park@naver.com",
+    "phone": "+82 10-5837-9451",
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-16T07:20:00Z",
+    "note": "Email opt-in: Yes, SMS opt-in: No. Last refreshed 15 Sep 2026 23:40 UTC. Shows recent activities."
+   }
+  ]
+ },
+ "usage": {
+  "in": 786,
+  "out": 228
+ }
+}

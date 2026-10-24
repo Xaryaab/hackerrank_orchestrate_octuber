@@ -1,0 +1,28 @@
+{
+ "model": "gemini-3.8-flash",
+ "purpose": "media_extraction_pdf",
+ "result": {
+  "records": [
+   {
+    "resource_id": "user_18",
+    "system": "account_service",
+    "record_type": "USER_PROFILE",
+    "result": "IDENTIFIABLE",
+    "customer_reference": "user_18",
+    "full_name": "Ingrid Dahl",
+    "email": "ingrid.dahl@outlook.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-07-18T11:00:00Z",
+    "note": "Statement NST-2026-0718-1842, order ORD-20261260 with delivery address in Trondheim, Norway."
+   }
+  ]
+ },
+ "usage": {
+  "in": 782,
+  "out": 218
+ }
+}

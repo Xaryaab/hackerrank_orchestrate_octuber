@@ -1,0 +1,108 @@
+{
+ "model": "gemini-2.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "audit_record_003",
+    "system": "security_service",
+    "record_type": "SECURITY_AUDIT_LOG",
+    "result": "FOUND",
+    "customer_reference": "user_03",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-05T07:00:00Z",
+    "note": "Account closure recorded on 2026-08-25T04:03:00Z by automated workflow."
+   },
+   {
+    "resource_id": "audit_record_002",
+    "system": "security_service",
+    "record_type": "SECURITY_AUDIT_LOG",
+    "result": "FOUND",
+    "customer_reference": "user_03",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-05T07:00:00Z",
+    "note": "Session revoked on 2026-08-25 03:21 by Security system."
+   },
+   {
+    "resource_id": "audit_record_001",
+    "system": "security_service",
+    "record_type": "SECURITY_AUDIT_LOG",
+    "result": "FOUND",
+    "customer_reference": "user_03",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-05T07:00:00Z",
+    "note": "Recovery challenge completed on 2026-08-24 16:14 by User (self)."
+   },
+   {
+    "resource_id": "audit_record_006",
+    "system": "security_service",
+    "record_type": "SECURITY_AUDIT_LOG",
+    "result": "FOUND",
+    "customer_reference": "user_03",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-05T07:00:00Z",
+    "note": "Email change confirmed on 2026-08-22 11:27 by User (self)."
+   },
+   {
+    "resource_id": "audit_record_005",
+    "system": "security_service",
+    "record_type": "SECURITY_AUDIT_LOG",
+    "result": "FOUND",
+    "customer_reference": "user_03",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-05T07:00:00Z",
+    "note": "Login from new device on 2026-08-20 09:42 by User (self)."
+   },
+   {
+    "resource_id": "audit_record_004",
+    "system": "security_service",
+    "record_type": "SECURITY_AUDIT_LOG",
+    "result": "FOUND",
+    "customer_reference": "user_03",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-05T07:00:00Z",
+    "note": "Password changed on 2026-08-18 14:05 by User (self)."
+   }
+  ]
+ },
+ "usage": {
+  "in": 795,
+  "out": 1129
+ }
+}

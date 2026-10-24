@@ -1,0 +1,28 @@
+{
+ "model": "gemini-3.5-flash-lite",
+ "purpose": "media_extraction_pdf",
+ "result": {
+  "records": [
+   {
+    "resource_id": "audit_record_003",
+    "system": "security_service",
+    "record_type": "SECURITY_AUDIT_LOG",
+    "result": "FOUND",
+    "customer_reference": "user_03",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": "security_retention_extract.pdf",
+    "observed_at": "2026-09-05T06:30:00Z",
+    "note": "Account closure recorded. Retain until 25 Aug 2027 04:03 UTC."
+   }
+  ]
+ },
+ "usage": {
+  "in": 730,
+  "out": 198
+ }
+}

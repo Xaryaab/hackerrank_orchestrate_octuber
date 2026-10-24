@@ -1,0 +1,76 @@
+{
+ "model": "gemini-3.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "export_1261",
+    "system": "export_service",
+    "record_type": "USER_EXPORT",
+    "result": "FOUND",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "marcus.lee@northstar.shop",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": "customer_export_1261.zip",
+    "observed_at": "2026-06-18T12:00:00Z",
+    "note": "Status Collecting. Created 20 Jun 14:18 UTC."
+   },
+   {
+    "resource_id": "export_1260",
+    "system": "export_service",
+    "record_type": "USER_EXPORT",
+    "result": "FOUND",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "ingrid.dahl@outlook.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": "customer_export_1260.zip",
+    "observed_at": "2026-06-18T12:00:00Z",
+    "note": "Status Ready. Expires 25 Jun 2026 06:42 UTC. Size 18.4 MB."
+   },
+   {
+    "resource_id": "export_1259",
+    "system": "export_service",
+    "record_type": "USER_EXPORT",
+    "result": "FOUND",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "sara.kim@northstar.shop",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": "customer_export_1259.zip",
+    "observed_at": "2026-06-18T12:00:00Z",
+    "note": "Status Packaging. Created 17 Jun 11:03 UTC."
+   },
+   {
+    "resource_id": "export_1258",
+    "system": "export_service",
+    "record_type": "USER_EXPORT",
+    "result": "FOUND",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "daniel.park@northstar.shop",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": "customer_export_1258.zip",
+    "observed_at": "2026-06-18T12:00:00Z",
+    "note": "Status Ready. Created 16 Jun 09:27 UTC."
+   }
+  ]
+ },
+ "usage": {
+  "in": 1629,
+  "out": 771
+ }
+}

@@ -1,0 +1,44 @@
+{
+ "model": "gemini-3.8-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "account_5762",
+    "system": "account_service",
+    "record_type": "USER_PROFILE",
+    "result": "ACTIVE",
+    "customer_reference": "user_11",
+    "full_name": "Haruka Sato",
+    "email": "haruka.s1838@zoho.com",
+    "phone": "+81 90 7610 2507",
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-26T11:00:00Z",
+    "note": "Active customer profile in Northstar Shop admin portal, Silver loyalty tier, market JP."
+   },
+   {
+    "resource_id": "support_9538",
+    "system": "support_platform",
+    "record_type": "SUPPORT_MESSAGE",
+    "result": "ACTIVE",
+    "customer_reference": "user_11",
+    "full_name": "Haruka Sato",
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-26T11:00:00Z",
+    "note": "Associated with ticket CS-8538; created 28 Aug 2026, customer replied 24 Sep 2026."
+   }
+  ]
+ },
+ "usage": {
+  "in": 1619,
+  "out": 408
+ }
+}

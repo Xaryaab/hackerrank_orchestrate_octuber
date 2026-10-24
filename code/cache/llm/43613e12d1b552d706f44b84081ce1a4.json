@@ -1,0 +1,28 @@
+{
+ "model": "gemini-3.5-flash-lite",
+ "purpose": "media_extraction_pdf",
+ "result": {
+  "records": [
+   {
+    "resource_id": "account_18",
+    "system": "account_service",
+    "record_type": "USER_PROFILE",
+    "result": "FOUND",
+    "customer_reference": "user_18",
+    "full_name": "Ingrid Dahl",
+    "email": "ingrid.dahl@outlook.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-07-18T11:00:00Z",
+    "note": "Customer statement NST-2026-0718-1842 with order ORD-20261260."
+   }
+  ]
+ },
+ "usage": {
+  "in": 782,
+  "out": 209
+ }
+}

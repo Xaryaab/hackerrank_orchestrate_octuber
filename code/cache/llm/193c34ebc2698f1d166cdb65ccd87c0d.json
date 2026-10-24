@@ -1,0 +1,28 @@
+{
+ "model": "gemini-3.5-flash-lite",
+ "purpose": "media_extraction_pdf",
+ "result": {
+  "records": [
+   {
+    "resource_id": "support_001",
+    "system": "support_platform",
+    "record_type": "SUPPORT_MESSAGE",
+    "result": "FOUND",
+    "customer_reference": null,
+    "full_name": "Priya Raman",
+    "email": "priya.raman@gmail.com",
+    "phone": "+91 98765 73142",
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": "delivery_correction_attachment.pdf",
+    "observed_at": "2026-09-12T07:30:00Z",
+    "note": "Delivery address correction request for order ORD-20264827."
+   }
+  ]
+ },
+ "usage": {
+  "in": 788,
+  "out": 212
+ }
+}

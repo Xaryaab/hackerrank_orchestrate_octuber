@@ -1,0 +1,11 @@
+{
+ "model": "gemini-3.7-flash",
+ "purpose": "media_extraction_pdf",
+ "result": {
+  "records": []
+ },
+ "usage": {
+  "in": 782,
+  "out": 9
+ }
+}

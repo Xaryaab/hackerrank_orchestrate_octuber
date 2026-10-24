@@ -1,0 +1,76 @@
+{
+ "model": "google/gemma-4-31b-it:free",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "backup_9291",
+    "system": "backup_service",
+    "record_type": "BACKUP_ARCHIVE",
+    "result": "FOUND",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "bluepeakco@outlook.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-04-29T09:00:00Z",
+    "note": "Created 26 Apr 02:00, Region ap-southeast-1"
+   },
+   {
+    "resource_id": "backup_9288",
+    "system": "backup_service",
+    "record_type": "BACKUP_ARCHIVE",
+    "result": "FOUND",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "miller.logistics@company.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-04-29T09:00:00Z",
+    "note": "Created 26 Apr 02:00, Region us-west-2"
+   },
+   {
+    "resource_id": "backup_9287",
+    "system": "backup_service",
+    "record_type": "BACKUP_ARCHIVE",
+    "result": "FOUND",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "areed1433@gmail.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": "customer-platform/weekly/segment-42-20260426.tar.zst",
+    "observed_at": "2026-04-29T09:00:00Z",
+    "note": "Retention end 26 Jul 2026, Region eu-west-1"
+   },
+   {
+    "resource_id": "backup_9286",
+    "system": "backup_service",
+    "record_type": "BACKUP_ARCHIVE",
+    "result": "FOUND",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "summit-retail@company.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-04-29T09:00:00Z",
+    "note": "Created 26 Apr 02:00, Region us-east-1"
+   }
+  ]
+ },
+ "usage": {
+  "in": 795,
+  "out": 761
+ }
+}

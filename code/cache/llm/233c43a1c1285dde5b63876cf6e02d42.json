@@ -1,0 +1,204 @@
+{
+ "model": "gemini-3.5-flash-lite",
+ "purpose": "intent_classification",
+ "result": {
+  "results": [
+   {
+    "id": 0,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 1,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 2,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 3,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 4,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 5,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 6,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 7,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 8,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 9,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 10,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 11,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 12,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 13,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 14,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 15,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 16,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "es"
+   },
+   {
+    "id": 17,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 18,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "fr"
+   },
+   {
+    "id": 19,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 20,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 21,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 22,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 23,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 24,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 25,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 26,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 27,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 28,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 29,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 30,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 31,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "ja"
+   }
+  ]
+ },
+ "usage": {
+  "in": 1649,
+  "out": 1340
+ }
+}

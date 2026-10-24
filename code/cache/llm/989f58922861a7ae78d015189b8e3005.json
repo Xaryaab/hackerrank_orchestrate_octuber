@@ -1,0 +1,492 @@
+{
+ "model": "gemini-3.5-flash-lite",
+ "purpose": "intent_classification",
+ "result": {
+  "results": [
+   {
+    "id": 0,
+    "is_deletion": false,
+    "request_type": "access",
+    "language": "en"
+   },
+   {
+    "id": 1,
+    "is_deletion": false,
+    "request_type": "access",
+    "language": "en"
+   },
+   {
+    "id": 2,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 3,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 4,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 5,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 6,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 7,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 8,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 9,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 10,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 11,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 12,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 13,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 14,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 15,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 16,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 17,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 18,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 19,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 20,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 21,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 22,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 23,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 24,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 25,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 26,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 27,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 28,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 29,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 30,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 31,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 32,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 33,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 34,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 35,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 36,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 37,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 38,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 39,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 40,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 41,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 42,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 43,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 44,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 45,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 46,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 47,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 48,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 49,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 50,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 51,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 52,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 53,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 54,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 55,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 56,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 57,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 58,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 59,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 60,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 61,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 62,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 63,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 64,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 65,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 66,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 67,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 68,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 69,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 70,
+    "is_deletion": false,
+    "request_type": "account_support",
+    "language": "en"
+   },
+   {
+    "id": 71,
+    "is_deletion": false,
+    "request_type": "access",
+    "language": "en"
+   },
+   {
+    "id": 72,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 73,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 74,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 75,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 76,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 77,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 78,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   },
+   {
+    "id": 79,
+    "is_deletion": true,
+    "request_type": "deletion",
+    "language": "en"
+   }
+  ]
+ },
+ "usage": {
+  "in": 4051,
+  "out": 2398
+ }
+}

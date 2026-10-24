@@ -1,0 +1,76 @@
+{
+ "model": "gemini-2.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "support_1034",
+    "system": "support_platform",
+    "record_type": "SUPPORT_TICKET",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": "Kofi Agyeman",
+    "email": "kagyeman8947@fastmail.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-05-24T07:00:00Z",
+    "note": "Ticket CS-5034 'Where is my delivery?' assigned to Maya Chen."
+   },
+   {
+    "resource_id": "CS-5034",
+    "system": "support_platform",
+    "record_type": "SUPPORT_TICKET_REFERENCE",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": "Kofi Agyeman",
+    "email": "kagyeman8947@fastmail.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-05-24T07:00:00Z",
+    "note": "Subject/reference for support ticket support_1034."
+   },
+   {
+    "resource_id": "ORD-20265034",
+    "system": null,
+    "record_type": "ORDER",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": "Kofi Agyeman",
+    "email": "kagyeman8947@fastmail.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-05-24T07:00:00Z",
+    "note": "Order for 'Running shoes', status 'In transit', linked to support ticket support_1034."
+   },
+   {
+    "resource_id": "SWF-884103",
+    "system": null,
+    "record_type": "TRACKING_REFERENCE",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": "Kofi Agyeman",
+    "email": "kagyeman8947@fastmail.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-05-24T07:00:00Z",
+    "note": "Tracking number for order ORD-20265034, carrier SwiftShip."
+   }
+  ]
+ },
+ "usage": {
+  "in": 795,
+  "out": 764
+ }
+}

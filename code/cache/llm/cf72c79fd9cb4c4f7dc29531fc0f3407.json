@@ -1,0 +1,76 @@
+{
+ "model": "gemini-2.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "backup_9291",
+    "system": "backup_service",
+    "record_type": "BACKUP_ARCHIVE",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "bluepeakco@outlook.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": true,
+    "file_name": null,
+    "observed_at": "2026-04-29T09:00:00Z",
+    "note": "Created 26 Apr 02:00, Region ap-southeast-1, Size 102.3 GB, Encryption AES-256."
+   },
+   {
+    "resource_id": "backup_9288",
+    "system": "backup_service",
+    "record_type": "BACKUP_ARCHIVE",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "miller.logistics@company.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": true,
+    "file_name": null,
+    "observed_at": "2026-04-29T09:00:00Z",
+    "note": "Created 26 Apr 02:00, Region us-west-2, Size 67.1 GB, Encryption AES-256."
+   },
+   {
+    "resource_id": "backup_9287",
+    "system": "backup_service",
+    "record_type": "BACKUP_ARCHIVE",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "areed1433@gmail.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": true,
+    "file_name": "segment-42-20260426.tar.zst",
+    "observed_at": "2026-04-29T09:00:00Z",
+    "note": "Created 26 Apr 2026, Region eu-west-1, Size 84.7 GB, AES-256, Retention end 26 Jul 2026, Checksum Verified."
+   },
+   {
+    "resource_id": "backup_9286",
+    "system": "backup_service",
+    "record_type": "BACKUP_ARCHIVE",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "summit-retail@company.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": true,
+    "file_name": null,
+    "observed_at": "2026-04-29T09:00:00Z",
+    "note": "Created 26 Apr 02:00, Region us-east-1, Size 91.4 GB, Encryption AES-256."
+   }
+  ]
+ },
+ "usage": {
+  "in": 795,
+  "out": 830
+ }
+}

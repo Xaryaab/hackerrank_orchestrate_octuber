@@ -1,0 +1,44 @@
+{
+ "model": "gemini-3.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "data_flow_1121",
+    "system": "integration_service",
+    "record_type": "DATA_FLOW",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "jain.aditi@gmail.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": true,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-08-07T08:00:00Z",
+    "note": "Data flow owned by Data Platform targeting customer_analytics_warehouse"
+   },
+   {
+    "resource_id": "data_flow_9846",
+    "system": "integration_service",
+    "record_type": "DATA_FLOW",
+    "result": "ACTIVE",
+    "customer_reference": null,
+    "full_name": null,
+    "email": "lucia-torres@gmail.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": true,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-08-07T08:00:00Z",
+    "note": "Continuous data flow targeting customer_analytics_warehouse"
+   }
+  ]
+ },
+ "usage": {
+  "in": 1603,
+  "out": 285
+ }
+}

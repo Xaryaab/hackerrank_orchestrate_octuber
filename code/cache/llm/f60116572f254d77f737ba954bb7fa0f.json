@@ -1,0 +1,92 @@
+{
+ "model": "gemini-2.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "account_5762",
+    "system": "account_service",
+    "record_type": "USER_PROFILE",
+    "result": "ACTIVE",
+    "customer_reference": "user_11",
+    "full_name": "Haruka Sato",
+    "email": "haruka.s1838@zoho.com",
+    "phone": "+81 90 7610 2507",
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-26T11:00:00Z",
+    "note": "Loyalty: Silver, Member since: 12 Jan 2024. Signup: mobile_app, Market: JP, Lang: Japanese. Last contact: 24 Sep 2026."
+   },
+   {
+    "resource_id": "ORD-20265762",
+    "system": "order_service",
+    "record_type": "ORDER",
+    "result": "ACTIVE",
+    "customer_reference": "user_11",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-26T11:00:00Z",
+    "note": "Item: Ceramic coffee set. Delivered on 18 Sep 2026. Total: JPY 8,900."
+   },
+   {
+    "resource_id": "ORD-20265518",
+    "system": "order_service",
+    "record_type": "ORDER",
+    "result": "ACTIVE",
+    "customer_reference": "user_11",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-26T11:00:00Z",
+    "note": "Item: Travel backpack. Returned on 03 Sep 2026. Total: JPY 12,400."
+   },
+   {
+    "resource_id": "support_9538",
+    "system": "support_platform",
+    "record_type": "SUPPORT_TICKET",
+    "result": "ACTIVE",
+    "customer_reference": "user_11",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-26T11:00:00Z",
+    "note": "Created 28 Aug. Linked to ticket CS-8538. Customer replied 24 Sep, agent responded 22 Sep."
+   },
+   {
+    "resource_id": "CS-8538",
+    "system": "support_platform",
+    "record_type": "SUPPORT_TICKET",
+    "result": "ACTIVE",
+    "customer_reference": "user_11",
+    "full_name": null,
+    "email": null,
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-09-26T11:00:00Z",
+    "note": "Main ticket reference for support_9538. Customer replied 24 Sep, agent responded 22 Sep."
+   }
+  ]
+ },
+ "usage": {
+  "in": 797,
+  "out": 987
+ }
+}

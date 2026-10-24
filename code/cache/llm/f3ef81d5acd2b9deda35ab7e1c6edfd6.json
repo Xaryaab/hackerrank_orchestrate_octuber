@@ -1,0 +1,28 @@
+{
+ "model": "gemini-2.5-flash",
+ "purpose": "media_extraction_image",
+ "result": {
+  "records": [
+   {
+    "resource_id": "analytics_7438",
+    "system": "analytics_platform",
+    "record_type": "ANALYTICS_PROFILE",
+    "result": "ACTIVE",
+    "customer_reference": "user_20",
+    "full_name": "Omar Darwish",
+    "email": "darwish.omar@icloud.com",
+    "phone": null,
+    "email_hash": null,
+    "enabled": null,
+    "restore_allowed": null,
+    "file_name": null,
+    "observed_at": "2026-07-13T10:00:00Z",
+    "note": "Last activity 13 Jul 2026 14:22 UTC, First seen 21 Apr 2026 09:14 UTC. Profile attributes: Market AE, Audience Returning shopper, Interest Coffee & dining."
+   }
+  ]
+ },
+ "usage": {
+  "in": 795,
+  "out": 236
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "model": "google/gemma-4-31b-it:free",
+ "purpose": "media_extraction_pdf",
+ "result": {
+  "records": []
+ },
+ "usage": {
+  "in": 781,
+  "out": 9
+ }
+}
