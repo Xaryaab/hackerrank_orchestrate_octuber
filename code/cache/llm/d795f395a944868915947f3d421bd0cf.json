@@ -1,0 +1,61 @@
+{
+ "model": "gemini-3.5-flash-lite",
+ "purpose": "media_presence_check",
+ "result": {
+  "files": [
+   {
+    "file_id": "evidence_32",
+    "identifiers": {
+     "backup_9286": "record",
+     "backup_9287": "record",
+     "backup_9288": "record",
+     "backup_9291": "record"
+    }
+   },
+   {
+    "file_id": "evidence_37",
+    "identifiers": {
+     "audit_record_001": "record",
+     "audit_record_002": "record",
+     "audit_record_003": "record",
+     "audit_record_004": "record",
+     "audit_record_005": "record",
+     "audit_record_006": "record"
+    }
+   },
+   {
+    "file_id": "evidence_42",
+    "identifiers": {
+     "CS-3245": "record",
+     "CS-3378": "record",
+     "FIN-7742": "record",
+     "ORD-20263245": "record",
+     "user_17": "record"
+    }
+   },
+   {
+    "file_id": "evidence_46",
+    "identifiers": {
+     "customer_export_2026-02-10": "record",
+     "customer_export_2026-02-12": "record",
+     "delivery_confirmation_19": "record",
+     "delivery_confirmation_20": "record",
+     "invoice_NS-10493": "record",
+     "parcel_damage_7713": "record",
+     "return_label_4821": "record",
+     "return_label_4876": "record"
+    }
+   },
+   {
+    "file_id": "evidence_60",
+    "identifiers": {
+     "marketing_001": "record"
+    }
+   }
+  ]
+ },
+ "usage": {
+  "in": 5868,
+  "out": 496
+ }
+}

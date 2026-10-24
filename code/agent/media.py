@@ -3,6 +3,8 @@
 Each file is processed once; results are cached by the LLM client, so the full run costs
 one call per media file (15 files), independent of the number of cases.
 PDF text is extracted locally with pypdf and sent as text to the text model (cheaper than vision).
+A second, batched vision pass marks identifiers a screenshot only *links to* (side panels, activity
+feeds): a link locates a record but does not prove it still exists, so such facts are not evidence.
 """
 from __future__ import annotations
 
@@ -42,6 +44,17 @@ For each record return an object with these keys (null when not shown):
 Respond with JSON: {"records": [ ... ]}. Do not invent identifiers that are not visible."""
 
 
+PRESENCE_PROMPT = """You review screenshots of internal admin consoles for a GDPR deletion audit.
+For every screenshot you get its file_id and identifiers that were read from it. For each identifier
+decide how it appears on that screen:
+  "record"    - the record itself is displayed: it is the page's subject, or it has its own row in a
+                table / list, so the screen shows the record's own data
+  "reference" - it only appears as a link or mention inside ANOTHER record's details panel, activity
+                feed or notes, without the record's own contents
+Respond with JSON: {"files": [{"file_id": "<id>", "identifiers": {"<identifier>": "record"|"reference"}}]}"""
+PRESENCE_BATCH = 6   # screenshots per call
+
+
 class MediaExtractor:
     def __init__(self, llm: LLMClient | None, dataset: Path):
         self.llm = llm
@@ -70,7 +83,30 @@ class MediaExtractor:
                                          image_paths=[path])
             if res and isinstance(res.get("records"), list):
                 facts[row["file_id"]] = [r for r in res["records"] if isinstance(r, dict) and r.get("resource_id")]
+        images = [(r["file_id"], self.dataset / r["file_path"]) for r in manifest
+                  if Path(r["file_path"]).suffix.lower() in (".png", ".jpg", ".jpeg") and facts.get(r["file_id"])]
+        self._mark_references(facts, images)
         return facts
+
+    def _mark_references(self, facts: dict, images: list[tuple[str, Path]]) -> None:
+        """Set fact["shown_as"] ("record" / "reference") for screenshot facts, several images per call."""
+        for i in range(0, len(images), PRESENCE_BATCH):
+            batch = images[i:i + PRESENCE_BATCH]
+            listing = "\n".join(f"Screenshot {n + 1}: file_id={fid} identifiers="
+                                 + json.dumps(sorted({f["resource_id"] for f in facts[fid]}))
+                                 for n, (fid, _) in enumerate(batch))
+            res = self.llm.chat_json("media_presence_check", PRESENCE_PROMPT,
+                                     "Screenshots are attached in this order:\n" + listing,
+                                     model=self.llm.text_model, image_paths=[p for _, p in batch])
+            files = res.get("files") if res else None
+            for entry in files if isinstance(files, list) else []:
+                if not isinstance(entry, dict) or not isinstance(entry.get("identifiers"), dict):
+                    continue
+                marks = entry["identifiers"]
+                for fact in facts.get(entry.get("file_id"), []):
+                    mark = marks.get(fact["resource_id"])
+                    if mark in ("record", "reference"):
+                        fact["shown_as"] = mark
 
 
 def dump_facts(facts: dict, path: Path) -> None:

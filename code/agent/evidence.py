@@ -393,6 +393,8 @@ def media_observations(path: Path, fid: str, cap: str, facts: list[dict],
         rid = fact.get("resource_id")
         if not rid or (text is not None and rid not in text):
             continue  # PDF text is available locally: drop identifiers the model did not read there
+        if str(fact.get("shown_as") or "").lower() == "reference":
+            continue  # only linked from another record's panel: locates it, does not prove it exists
         target = aliases.get(rid) or aliases.get(fact.get("file_name") or "")
         if target and (fact.get("system") or system_for(rid)) == system_for(target):
             rid = target

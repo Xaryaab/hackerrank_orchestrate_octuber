@@ -8,7 +8,7 @@ with the commands in [Reproducing](#reproducing). It uses only participant-facin
 | Set | Size | Labels | What it measures |
 |---|---|---|---|
 | Public samples | 32 requests | `dataset/sample_output.csv` (official) | status, step, field and sequence accuracy |
-| Custom cases | 17 checks | built and hand-labelled by us (section 3) | identity history, intent, `audit_at` cut-off, media evidence, contract invariants |
+| Custom cases | 18 checks | built and hand-labelled by us (section 3) | identity history, intent, `audit_at` cut-off, media evidence, contract invariants |
 | Test split | 518 requests | none (hidden) | contract validity, invariants, LLM impact, distribution |
 
 The sample grader (`code/evaluation/main.py`) compares the predicted `steps_json` with the gold
@@ -73,10 +73,11 @@ evidence, linker and planner. Sample-based variants rebuild the case links after
 | C-case_05-early-audit | Sample case_05 audited one day *before* its finding evidence (`evidence_54`) was captured | no citation of evidence captured after `audit_at` | **PASS**: no future citations |
 | D-case_61 | Test case: storage browser screenshot `evidence_46` shows `delivery_confirmation_19.pdf`, which the catalog links to `object_19` | `INCOMPLETE`, `REPORT_REMAINING_RECORD object_19 evidence_46` | **PASS** |
 | D-case_46 | Test case: identity screen `evidence_42` shows `user_17` as a "Retained reference" with no name, email or phone (`tombstone_17`) | `COMPLETE`, `VERIFY_RECORD_REDACTED tombstone_17 evidence_42` | **PASS** |
+| D-case_34 | Test case: on customer screen `evidence_04`, `support_9538` appears only as a link in the side panel; the direct proof is a PII scan of its attachment in log `evidence_01` | finding on `support_9538` cites `evidence_01`, not the screenshot | **PASS** |
 | D-case_33 | Test case: customer statement PDF `evidence_18` is `NST-2026-0718-1842`, which the catalog links to `export_1842`; the model also invented `account_18` | finding on `export_1842` citing `evidence_18`; no `account_18` | **PASS** |
 | E-invariants | All 518 test rows | no citation captured after `audit_at`; findings and COMPLETE verifications cite evidence; remediation and INCOMPLETE verifications use `""` | **PASS**: 0 violations |
 
-**17/17 custom checks pass.** We labelled the D cases ourselves by opening the screenshots and
+**18/18 custom checks pass.** We labelled the D cases ourselves by opening the screenshots and
 PDFs. Those are the only test-set answers we can check, and none of them is hardcoded: they come
 out of the general alias-resolution and grounding logic described in section 5.
 
@@ -108,7 +109,8 @@ These are listed in the order we hit them; each fix was re-graded on the samples
 | 4 | The vision model invented `account_18` from a PDF that only says `user_18`. | **Grounding check**: a PDF fact is kept only if its identifier appears literally in the PDF text, which is extracted locally with pypdf. | Hallucinated finding removed (custom check D-case_33). |
 | 5 | Alias matching on raw text would wrongly match `user_17` in a finance register that lists many customers. | Raw-text alias matching is limited to document-style aliases (containing `-` or `.`). Bare customer keys must match a fact from the same system. | No false links. |
 | 6 | The rules fallback missed non-English negations ("no borren mi cuenta") and "I am not asking you to remove …". Our custom intent cases exposed it: the LLM was correct, the rules were not. | Added negation markers for es/pt/fr/de and "not asking to remove". | `--no-llm` now passes B-intent-2 and B-intent-7. Test output unchanged. |
-| 7 | API problems: OpenRouter returned 402 (no credits); the free Gemini tier allows 20 requests per model per day, returns 503s, and `gemini-3.8-flash` queued about 2 minutes per call. Retries hung the run. | `llm.py` stops calling on 401/402/403, skips only the exhausted model on a daily-quota 429, backs off on rate limits, caps `max_tokens`, logs each failed attempt, and caches every response. | A full rerun now makes 0 API calls; total cost is about $0.07 (see `usage_report.md`). |
+| 7 | API problems: OpenRouter returned 402 (no credits); the free Gemini tier allows 20 requests per model per day, returns 503s, and `gemini-3.8-flash` queued about 2 minutes per call. Retries hung the run. | `llm.py` stops calling on 401/402/403, skips only the exhausted model on a daily-quota 429, backs off on rate limits, caps `max_tokens`, logs each failed attempt, and caches every response. | A full rerun now makes 0 API calls; total cost is about $0.074 (see `usage_report.md`). |
+| 8 | Organizer clarification (Discord): a link to a record in a screenshot does not prove the record exists. Our case_34 finding for `support_9538` cited such a link. | A batched vision check (2 calls) labels each identifier already extracted from a screenshot as the screen's own `record` or a `reference` to another record. References are no longer evidence. The cached extractions are reused unchanged. | case_34 now cites the direct log evidence (`evidence_01`). Every other row is unchanged. Custom check D-case_34 added. |
 
 ### Independent code review
 
@@ -145,7 +147,7 @@ the test split (`output.csv` byte-identical) and the 17 custom checks (all pass)
 python code/main.py --split sample                 # samples -> code/evaluation/sample_predictions.csv
 python code/evaluation/main.py --details           # metrics in section 2 (right-hand column)
 python code/main.py --split sample --no-llm        # then re-grade for the left-hand column
-python code/evaluation/custom_cases.py             # section 3 (17 checks)
+python code/evaluation/custom_cases.py             # section 3 (18 checks)
 python code/main.py                                # test split -> ./output.csv + usage_report.md
 ```
 

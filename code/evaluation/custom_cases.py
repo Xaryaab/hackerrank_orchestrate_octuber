@@ -131,7 +131,10 @@ def main() -> int:
 
     # ---- D. media-dependent test cases, labelled by reading the screenshots / PDFs ourselves
     by_id = {r.case_id: r for r in aud.ds.requests}
-    out = {c: aud.audit(by_id[c]) for c in ("case_61", "case_46", "case_33")}
+    out = {c: aud.audit(by_id[c]) for c in ("case_61", "case_46", "case_33", "case_34")}
+    f34 = [(s["resource_id"], s["evidence_id"]) for s in out["case_34"].steps if s["phase"] == "FINDING"]
+    check("D-case_34", "support_9538 is only a link in evidence_04's side panel; direct proof is log evidence_01",
+          ("support_9538", "evidence_01") in f34 and ("account_5762", "evidence_04") in f34, f"findings {f34}")
     s61 = [(s["phase"], s["resource_id"], s["operation"], s["evidence_id"]) for s in out["case_61"].steps]
     check("D-case_61", "object_19 shown as delivery_confirmation_19.pdf in storage browser (evidence_46)",
           out["case_61"].status == "INCOMPLETE"

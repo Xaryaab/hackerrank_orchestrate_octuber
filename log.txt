@@ -235,3 +235,25 @@ branch=agent-v1
 repo_root=C:\Users\HP\Desktop\HackerRank Orchestrate\repo
 worktree=main
 parent_agent=none
+
+## [2026-10-24T06:04:56Z] Apply Discord clarification: screenshot links are not evidence (case_34)
+
+User Prompt (verbatim, secrets redacted):
+go ahead.
+
+Agent Response Summary:
+Implemented the organizer's Discord clarification that a link to a record in a screenshot does not prove the record exists. Re-extracting screenshots with a new prompt failed (gemini-2.5-flash daily quota) and was unstable (an id came back as user_11_account_5762), so it was reverted; instead a batched vision presence check (2 calls, gemini-3.5-flash-lite) labels each cached screenshot fact as record or reference, and evidence.py ignores references. Only case_34 changed: support_9538's finding now cites direct log evidence_01 instead of the screenshot link in evidence_04. Samples unchanged (status 1.000, F1 0.987), 18/18 custom checks pass (new D-case_34), and a no-key run reproduces output.csv; usage now 22 calls, ~$0.074.
+
+Actions:
+* Edited code/agent/media.py (PRESENCE_PROMPT, _mark_references), code/agent/evidence.py (drop shown_as=reference)
+* Edited code/evaluation/custom_cases.py, evaluation_report.md, README.md, HANDOFF.md
+* Ran sample grader, test split with diff, custom cases, no-key reproduction; regenerated output.csv and usage_report.md
+* git commit on agent-v1
+
+Context:
+tool=Claude Code
+model=claude-opus-5-5
+branch=agent-v1
+repo_root=C:\Users\HP\Desktop\HackerRank Orchestrate\repo
+worktree=main
+parent_agent=none

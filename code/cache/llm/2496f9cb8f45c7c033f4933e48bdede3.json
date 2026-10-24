@@ -1,0 +1,60 @@
+{
+ "model": "gemini-3.5-flash-lite",
+ "purpose": "media_presence_check",
+ "result": {
+  "files": [
+   {
+    "file_id": "evidence_04",
+    "identifiers": {
+     "CS-8538": "reference",
+     "ORD-20265518": "record",
+     "ORD-20265762": "record",
+     "account_5762": "record",
+     "support_9538": "reference"
+    }
+   },
+   {
+    "file_id": "evidence_09",
+    "identifiers": {
+     "search_1874": "record",
+     "search_428": "record"
+    }
+   },
+   {
+    "file_id": "evidence_14",
+    "identifiers": {
+     "data_flow_1121": "record",
+     "data_flow_9846": "record"
+    }
+   },
+   {
+    "file_id": "evidence_19",
+    "identifiers": {
+     "analytics_7438": "record"
+    }
+   },
+   {
+    "file_id": "evidence_23",
+    "identifiers": {
+     "export_1258": "record",
+     "export_1259": "record",
+     "export_1260": "record",
+     "export_1261": "record"
+    }
+   },
+   {
+    "file_id": "evidence_28",
+    "identifiers": {
+     "CS-5034": "record",
+     "ORD-20265034": "record",
+     "SWF-884103": "record",
+     "support_1034": "record"
+    }
+   }
+  ]
+ },
+ "usage": {
+  "in": 6888,
+  "out": 432
+ }
+}

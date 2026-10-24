@@ -41,7 +41,7 @@ if prompts, models or evidence change.
 python code/main.py                          # 518 test requests  -> ./output.csv (+ code/evaluation/usage_report.md)
 python code/main.py --split sample           # 32 public samples  -> code/evaluation/sample_predictions.csv
 python code/evaluation/main.py --details     # grade the samples against dataset/sample_output.csv
-python code/evaluation/custom_cases.py       # 17 custom evaluation checks
+python code/evaluation/custom_cases.py       # 18 custom evaluation checks
 python code/main.py --no-llm                 # deterministic rules only (no model calls, no cache)
 python code/tools/dossier.py case_11         # developer view: everything linked to one case
 ```
@@ -63,7 +63,7 @@ request ──► intent ──► identity ──► linking ──► state @ 
 | `intent.py` | Sends the distinct request texts to the LLM in batches of 80 (5 calls for 375 texts). A multilingual rules layer that understands negations cross-checks the result, and explicit negations such as "do not close the account" or "no borren" always win. |
 | `identity.py` | Builds current plus historical emails and phones from `user_audit_log.csv`, and `sha256(email)` hashes, so a request under an old address resolves to the same `user_id`. |
 | `evidence.py` | Parses every evidence format (SQL snapshots run in SQLite, JSON, logs, text records) into time-stamped `Observation`s. It also resolves data-catalog aliases and checks media facts against their source (see below). |
-| `media.py` | Screenshots go to a vision model; PDFs are extracted locally with pypdf and sent as text. Each file is read once (15 calls in total) into structured facts. |
+| `media.py` | Screenshots go to a vision model; PDFs are extracted locally with pypdf and sent as text. Each file is read once (15 calls in total) into structured facts. A batched vision check (2 calls) then marks IDs that a screen only links to: a link is not proof that the record exists. |
 | `linker.py` | Links each case to its resources: records found directly through identifiers, plus records found through deletion-worker activity around `reported_at`. Records that can't be linked directly are assigned globally by exact matching. Repeat subjects are split by time. |
 | `state.py`, `planner.py` | Take the latest observation at or before `audit_at` for each resource and turn it into signals (exists / PII exposed / flow enabled / restorable). They then compare those signals with the rule for the resource's category (DELETE, REDACT, ANONYMIZE, RETAIN, tombstone) and produce the findings, remediation and verification steps. |
 | `pipeline.py` | Decides the status and evidence citations. Findings and COMPLETE verifications cite the evidence that proves the state; remediation and INCOMPLETE verifications use `""`. |
@@ -75,7 +75,7 @@ request ──► intent ──► identity ──► linking ──► state @ 
   Evidence captured after `audit_at` is never cited.
 - **The LLM handles the language and vision parts only:** understanding request text and reading
   screenshots and documents. Policy, timing and ordering are deterministic code, which keeps
-  results reproducible and cheap (about $0.07 for the full run).
+  results reproducible and cheap (about $0.074 for the full run).
 - **Media facts are checked against their source.**
   - Screens show aliases rather than resource IDs (`user_17` → `tombstone_17`,
     `delivery_confirmation_19.pdf` → `object_19`). These are resolved through the data-catalog
@@ -88,7 +88,7 @@ request ──► intent ──► identity ──► linking ──► state @ 
 
 See `code/evaluation/evaluation_report.md` and `code/evaluation/usage_report.md`. Summary for the
 32 public samples: status accuracy **1.000**, step F1 **0.987**, field accuracy **0.988**, exact
-sequence **0.875**. All 17 custom checks pass.
+sequence **0.875**. All 18 custom checks pass.
 
 ## Repository layout
 

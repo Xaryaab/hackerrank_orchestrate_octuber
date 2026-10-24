@@ -75,3 +75,10 @@ share/exhaust fast; gemini-3.8-flash queues ~2 min/call). Current: VISION_MODEL=
   object_19 (delivery_confirmation_19.pdf) [evidence_46], export_1842 (NST-2026-0718-1842) [evidence_18 PDF].
   Fact alias match needs same system; document-style aliases (with - or .) also matched in PDF text.
 - PDF facts are grounded: resource ids not literally in the PDF text are dropped (model invented account_18).
+- Discord (organizer): a screenshot LINK to a record is not proof it exists -> media._mark_references
+  (batched vision check on gemini-3.5-flash-lite) marks facts shown_as=reference; evidence.py drops them.
+  Only effect: case_34 support_9538 cites log evidence_01 instead of screenshot evidence_04.
+- Discord: case_18/20 sample misses can be ignored (scoring is on deletion_requests only); ambiguity
+  between same-window accounts is expected; legal holds = VERIFY_RECORD_PRESENT; extra steps are penalised.
+- Open judgement call (unchanged): case_45 verifies audit_record_001..006 from evidence_37 (all user_03 rows);
+  catalog + PDF single out only audit_record_003.
